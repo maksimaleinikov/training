@@ -98,13 +98,12 @@ function checkGrades() {
             students[i].isReadyForArmy = false;
         }
     }
-    console.log(students);
-    var army_boys = [];
+    var solders = [];
     for (var k = 0; k < students.length; k++) {
-        if (students.isReadyForArmy === true) {
-            army_boys[k] = students[k];
+        if (students[k].isReadyForArmy) {
+            solders.push(students[k]);
         }
     }
-    console.log(army_boys);
+    console.log(solders);
 }
 checkGrades();
