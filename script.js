@@ -79,24 +79,32 @@ var student_10 = { //ср.<3,мужч.,18=<возр.<=27
     gender: 'Male'
 }
 var students = [student_1, student_2, student_3, student_4, student_5, student_6, student_7, student_8, student_9, student_10];
-console.log(students);
-
-var temp = 0;
-var average_results = [];
 
 function checkGrades() {
     for (var i = 0; i < students.length; i++) {
+        var gradeSum = 0;
         for (var j = 0; j < students[i].grades.length; j++) {
-            temp += students[i].grades[j];
+            gradeSum += students[i].grades[j];
         }
-        temp = temp / students[i].grades.length;
-        console.log(temp);
-        if (temp < 3) {
+        var averageGrade = gradeSum / students[i].grades.length;
+        console.log(averageGrade);
+        if (averageGrade < 3) {
             if (students[i].gender === 'Male' && students[i].age >= 18 && students[i].age <= 27) {
-                console.log('army!');
+                students[i].isReadyForArmy = true;
+                delete students[i].grades;
+                delete students[i].course;
             }
+        } else {
+            students[i].isReadyForArmy = false;
         }
     }
-
+    console.log(students);
+    var army_boys = [];
+    for (var k = 0; k < students.length; k++) {
+        if (students.isReadyForArmy === true) {
+            army_boys[k] = students[k];
+        }
+    }
+    console.log(army_boys);
 }
 checkGrades();
